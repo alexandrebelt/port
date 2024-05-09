@@ -54,6 +54,7 @@ export default {
   src: url('./assets/fonts/NeueHaasGrotesk/NeueHaasGroteskDisplay-ExtLt.otf') format('opentype');
   font-weight: 200
 }
+/*teste */
 
 @font-face {
   font-family: 'Neue Haas Grotesk Display';
