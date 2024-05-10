@@ -38,7 +38,7 @@ export default {
     flex-direction: row;
     align-content: end;
     mix-blend-mode: difference;
-
+    height: 20vh;
 
     .header-col {
         align-self: end;

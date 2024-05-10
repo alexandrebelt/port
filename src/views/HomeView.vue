@@ -118,7 +118,7 @@ export default defineComponent({
           invalidateOnRefresh: true
         }
       })
-    }, 1000);
+    }, 200);
   }
 })
 </script>

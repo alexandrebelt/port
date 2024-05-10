@@ -1,8 +1,8 @@
 <template>
     <div id='#contato'>
 
-        <form  ref="form" id="contact-form" @submit.prevent="sendEmail">
-            <div class="form-content">
+        <form ref="form" id="contact-form" @submit.prevent="sendEmail">
+            <div v-if="formActive" class="form-content">
                 <input required class="form-field" type="text" name="from_name" placeholder="Your name" />
                 <hr class="form-hr">
                 <input required class="form-field" type="email" name="reply_to" placeholder="Your E-mail " />
@@ -19,8 +19,11 @@
                     </div>
                 </button>
             </div>
-            <div class="agradece">
-                <p><span>Obrigado!</span> I´ll be in touch as soon as possible! :)</p>
+            <div v-if="mensagemSucesso">
+                <h3><span>Obrigado!</span> I´ll be in touch as soon as possible! :)</h3>
+            </div>
+            <div v-if="mensagemErro">
+                <h3><span>Ops! </span>Something went wrong, try again later :(</h3>
             </div>
         </form>
     </div>
@@ -34,24 +37,33 @@ export default defineComponent({
     data() {
         return {
             isLoading: false,
+            formActive: true,
+            mensagemErro: false,
+            mensagemSucesso: false,
+
         }
     },
     methods: {
         sendEmail() {
             if (this.$refs.form === null) return;
             this.isLoading = true;
+
             emailjs.sendForm('service_g9jobfd', 'template_8bn97wn', this.$refs.form, {
                 publicKey: 'MSPIUEWF69QcjnYel'
             })
 
                 .then(
                     () => {
+                        this.mensagemSucesso = true;
                         console.log('SUCCESS!');
+                        this.formActive = false;
                         this.isLoading = false;
                     },
                     (error) => {
+                        this.mensagemErro = true;
                         console.log('FAILED...', error.text);
                         this.isLoading = false;
+                        this.formActive = false;
                     },
                 );
         }
@@ -73,7 +85,7 @@ export default defineComponent({
 .form-field::placeholder {
     font-weight: 300;
     opacity: 1;
-    color:var(--branco);
+    color: var(--branco);
 }
 
 .form-field:focus-visible {
@@ -152,15 +164,25 @@ textarea {
     flex-wrap: wrap;
     max-width: 70vw;
 
+    h3 {
+        text-align: center !important;
+
+        span {
+            font-weight: 500;
+        }
+    }
+
     .form-content {
         position: relative;
-        .enviar-label{
+
+        .enviar-label {
             display: flex;
             justify-content: center;
         }
+
         .form-field {
             width: 100%;
-            color:var(--branco);
+            color: var(--branco);
         }
 
         textarea {
@@ -172,9 +194,5 @@ textarea {
             margin: 0;
         }
     }
-    .agradece{
-        display: none;
-    }
-
 }
 </style>

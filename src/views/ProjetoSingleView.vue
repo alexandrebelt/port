@@ -50,7 +50,7 @@ export default {
 
 <style lang="scss">
 .projeto-single-container {
-
+    height:80vh;
     padding: 12vw 3vw 0vw;
 
     .projeto-info {
