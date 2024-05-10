@@ -4,30 +4,18 @@
     <transition name="fade">
       <component :is="Component" />
     </transition>
-    <div id="footer">
-      <div>
-        <div class="footer-col">
-          <a target="_blank" href="">
-            Instagram
-          </a>
-          <a target="_blank" href="">
-            LinkedIn
-          </a>
-          <a target="_blank" href="">
-            Behance
-          </a>
-        </div>
-      </div>
-    </div>
+    <FooterComponent/>
   </router-view>
 </template>
 <script>
 import LocomotiveScroll from 'locomotive-scroll'
 import HeaderComponent from './components/HeaderComponent.vue'
+import FooterComponent from './components/FooterComponent.vue'
 
 export default {
   components: {
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   },
   
   mounted() {

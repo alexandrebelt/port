@@ -51,12 +51,11 @@ export default defineComponent({
   },
   mounted() {
     setTimeout(() => {
-    const tl = gsap.timeline();
+
     gsap.set('#footer', {y:200,})
-    gsap.from('.header', {
-      y: 0
-    })
-    tl.to('.header', {
+    gsap.set('.header', {y:0,})
+
+    gsap.to('.header', {
       y: -200,
       ease: 'power1',
       scrollTrigger: {
@@ -116,21 +115,6 @@ export default defineComponent({
           start: '80% center',
           end: 'bottom bottom',
           scrub: 2,
-          invalidateOnRefresh: true
-        }
-      })
-      tl.to('.header', {
-        keyframes: {
-          "0%":{y:-200,},
-          "100%":{y: 0,}
-        },
-        ease: 'power1',
-        scrollTrigger: {
-          trigger: 'body',
-          start: '80% center',
-          end: 'bottom bottom',
-          scrub: 2,
-          markers:true,
           invalidateOnRefresh: true
         }
       })

@@ -31,6 +31,8 @@ export default {
         }
     },
     mounted() {
+        ScrollTrigger.killAll()
+
         axios.get(`https://rickandmortyapi.com/api/character?name=${this.projetoNome.replace(/-/g, ' ')}`)
             .then((response) => {
                 this.infos = response.data.results[0]
@@ -39,7 +41,6 @@ export default {
                 console.log(error)
             })
 
-        ScrollTrigger.killAll()
     },
     beforeRouteEnter() {
 
@@ -56,26 +57,31 @@ export default {
         display: flex;
         flex-direction: row;
         column-gap: max(20px, 3vw);
+
         .col-projeto {
-            display:flex;
+            display: flex;
             flex-direction: column;
-            align-self:start;
+            align-self: start;
             text-align: left;
             row-gap: max(20px, 3vw);
-            h4{
+
+            h4 {
                 font-weight: 500;
                 margin: 0;
                 line-height: .6em;
             }
-            p{
+
+            p {
                 margin: 0;
             }
+
             img {
                 width: 100%;
                 aspect-ratio: 3/2;
                 object-fit: cover;
             }
-            a{
+
+            a {
                 font-weight: 500;
                 text-transform: uppercase;
                 text-decoration: underline;
