@@ -51,7 +51,7 @@ export default {
 <style lang="scss">
 .projeto-single-container {
     height:80vh;
-    padding: 12vw 3vw 0vw;
+    padding: 15vw 3vw 0vw;
 
     .projeto-info {
         display: flex;
@@ -79,6 +79,7 @@ export default {
                 width: 100%;
                 aspect-ratio: 3/2;
                 object-fit: cover;
+                border-radius: 10px;
             }
 
             a {
@@ -90,12 +91,13 @@ export default {
             }
         }
 
+
         :nth-of-type(1) {
-            flex-basis: 40%;
+            flex-basis: 30%;
         }
 
         :nth-of-type(2) {
-            flex-basis: 60%;
+            flex-basis: 70%;
         }
     }
 }

@@ -151,23 +151,4 @@ h4 {
   margin-bottom: 3vw;
   font-weight: 200;
 }
-#footer{
-  position:fixed;
-  width:100vw;
-  bottom: 0;
-  .footer-col{
-    a{
-      margin: max(20px, 3vw);
-    }
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-   a{
-    mix-blend-mode:exclusion;
-    filter: contrast(0) brightness(100);
-    font-size: max(13px, 1.2vw);
-    text-transform: uppercase;
-   }
-  }
-}
 </style>

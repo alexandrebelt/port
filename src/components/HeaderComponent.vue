@@ -5,8 +5,12 @@
         </div>
         <div class="header-col">
             <nav>
-                <router-link to="/">Home</router-link>
-                <router-link to="/about">Contact</router-link>
+                <router-link to="/">
+                            <span>Home</span>
+                </router-link>
+                <router-link to="/about">
+                    <span>Contact</span>
+                </router-link>
             </nav>
         </div>
 
@@ -20,9 +24,7 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
-    mounted() {
 
-    }
 }
 </script>
 
@@ -33,12 +35,12 @@ export default {
     display: flex;
     justify-content: space-between;
     top: 0;
-    color:var(--branco);
+    color: var(--branco);
     width: 100%;
     flex-direction: row;
     align-content: end;
     mix-blend-mode: difference;
-    height: 20vh;
+
 
     .header-col {
         align-self: end;
@@ -66,9 +68,7 @@ export default {
             mix-blend-mode: difference;
 
 
-            &.router-link-exact-active {
-
-            }
+            &.router-link-exact-active {}
         }
     }
 }

@@ -2,11 +2,14 @@
     <div class="projects-wrapper">
         <ul class="projects-list">
             <div class="li-wrapper">
-                <li v-for="proj in projetos" :key="proj.id">
+                <li class="projeto-item" v-for="proj in projetos" :key="proj.id">
                     <router-link
                         :to="{ name: 'Projeto', params: { projetoNome: proj.name.replace(/\s+/g, '-').toLowerCase() } }">
-                        <img :src="proj.image" :alt="proj.name">
+                        <img class="projeto-thumb" :src="proj.image" :alt="proj.name">
                     </router-link>
+                    <div class="hovertext" id="dialog-label">
+                        <p>{{ proj.name }}</p>
+                    </div>
                 </li>
             </div>
         </ul>
@@ -17,6 +20,7 @@
 import axios from 'axios'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
+import $ from 'jquery'
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
@@ -27,6 +31,23 @@ export default {
         }
     },
     mounted() {
+        $(".li-wrapper").mousemove(function (e) {
+
+            // Select hovertext element within gallery cell
+
+            this.$popup = $(this).find(".hovertext").first();
+
+            // Get offset from top
+            var eTop = $(this).offset().top;
+            var eLeft = $(this).offset().left;
+
+            var x = e.pageX + 20;
+            var y = e.pageY + 20;
+
+            // Set CSS
+            $(this).find(".hovertext").css({ top: y - eTop, left: x - eLeft });
+
+        });
         axios.get("https://rickandmortyapi.com/api/character").
             then((response) => {
                 this.projetos = response.data.results.slice(0, 7)
@@ -61,6 +82,23 @@ export default {
 </script>
 
 <style lang="scss">
+.hovertext {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.projeto-item .hovertext {
+    visibility: hidden;
+}
+
+.projeto-item:hover .hovertext {
+    visibility: visible;
+}
+
 .projects-wrapper {
     position: fixed !important;
     top: 50% !important;
@@ -79,6 +117,7 @@ export default {
 
 
     li {
+        position: relative;
         display: inline-block;
         list-style: none;
         margin: 0 10px;
@@ -96,26 +135,57 @@ export default {
 }
 
 .li-wrapper {
+    position: relative;
     display: flex;
     padding: 0 4vw;
 }
 
-@media (max-width: 700px) {
-    
-  .projects-wrapper {
-      height: 50vh !important;
-      max-height: 100vh !important;
+#dialog-label {
+    position: fixed;
+    background-color: var(--branco) !important;
+    padding: 1vw;
+    border: 1px solid var(--preto);
+
+    p {
+        font-size: max(15px, 1vw) !important;
+        text-transform: uppercase;
+        letter-spacing: 0.1vw
     }
-    
+}
+
+@media (max-width: 800px) {
+    .submit-form {
+        transform: translatey(19px);
+    }
+}
+
+@media (max-width: 700px) {
+
+    .projects-wrapper {
+        height: 50vh !important;
+        max-height: 100vh !important;
+    }
+
     .li-wrapper {
         li {
             width: 50vw !important;
             height: 50vh !important;
-            
+
             img {
                 height: 100% !important;
-      }
+            }
+        }
     }
-  }
+
+    .projeto-info {
+        flex-direction: column-reverse !important;
+        flex-basis: 100% !important;
+        row-gap: 3vw;
+
+        .col-projeto {
+            width: 100%;
+        }
+    }
+
 }
 </style>

@@ -12,10 +12,10 @@
                 <hr>
                 <button type="submit" class="submit-form">
                     <div class="loading-icon" v-if="isLoading">
-                        <img src="#" alt="enviar" />
+                        <img src="/images/loading.png" alt="sending" />
                     </div>
                     <div class="enviar-label" v-else>
-                        <img src="#" alt="send" />
+                        <img src="/images/next.png" alt="send" />
                     </div>
                 </button>
             </div>
@@ -118,6 +118,7 @@ button {
         transition: 1s;
         display: flex;
         margin: 0 auto;
+        max-width: max(10px, 1.2vw);
     }
 
     .loading-icon {

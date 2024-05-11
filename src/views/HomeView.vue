@@ -95,17 +95,6 @@ export default defineComponent({
           invalidateOnRefresh: true
         }
       })
-      gsap.to('body', {
-        backgroundColor: '#202020',
-        ease: 'power1',
-        scrollTrigger: {
-          trigger: '.contato',
-          start: 'top bottom',
-          end: 'center top',
-          scrub: 2,
-          invalidateOnRefresh: true
-        }
-      })
       gsap.set('#footer', {y:200,})
       gsap.to('#footer', {
         y:0,
@@ -118,7 +107,7 @@ export default defineComponent({
           invalidateOnRefresh: true
         }
       })
-    }, 200);
+    }, 1000);
   }
 })
 </script>
